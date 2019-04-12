@@ -38,9 +38,9 @@ isoreg.censor <- function(covar, pvals, mask, fun.list,
     s.deriv <- fun.list$s.deriv
     Const <- fun.list$Const
     init.tdpvals <- pmin(pvals, g(pvals))
-    init.ref.tdpvals <- pmax(pvals, g(pvals))
-    init.tdpvals <- pmin(pvals, g(pvals))
-    init.ref.tdpvals <- pmax(pvals, g(pvals))
+    ## init.ref.tdpvals <- pmax(pvals, g(pvals))
+    ## This is a mistake pointed by Heejong Bong from CMU
+    init.ref.tdpvals <- sinv(init.tdpvals)
 
     if (is.null(score0)){
         mu0 <- mean(-log(pvals))

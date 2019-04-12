@@ -62,10 +62,10 @@ convex.mask.update <- function(candid, score, mask, prop,
 
 #### Score_Fun
 STAR.gam.em.censor <- function(covar, pvals, mask,
-                              cov.formula,
-                              fun.list = create.fun("SeqStep"),
-                              score0 = NULL,
-                              num.steps = 5){
+                               cov.formula,
+                               fun.list = create.fun("SeqStep"),
+                               score0 = NULL,
+                               num.steps = 5){
     n <- length(pvals)
     h <- fun.list$h
     g <- fun.list$g
@@ -73,7 +73,9 @@ STAR.gam.em.censor <- function(covar, pvals, mask,
     s.deriv <- fun.list$s.deriv
     Const <- fun.list$Const
     init.tdpvals <- pmin(pvals, g(pvals))
-    init.ref.tdpvals <- pmax(pvals, g(pvals))
+    ## init.ref.tdpvals <- pmax(pvals, g(pvals))
+    ## This is a mistake pointed by Heejong Bong from CMU
+    init.ref.tdpvals <- sinv(init.tdpvals)
     if (is.null(score0)){
         mux0 <- mean(-log(init.tdpvals))
         mux <- rep(mux0, n)        
