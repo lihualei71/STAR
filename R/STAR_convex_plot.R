@@ -125,8 +125,7 @@ mains <- c("Initial Score (Case 1)", "Initial Score (Case 2)",
            "Oracle Score (Case 2)", "Oracle Score (Case 3)")
 par(mfrow = c(2, 3), mar = c(1, 2, 2, 2))
 for (i in 1:6){
-    plot.strength.convex(x, scores[[i]], cex = 1, cex.main = 1,
-                         main = mains[i], xaxt = "n", yaxt = "n")
+    plot.strength.convex(x, scores[[i]], cex = 1, cex.main = 1, main = mains[i], xaxt = "n", yaxt = "n", col.bg = "#A9A9A9", col.fg = "#000000")
     axis(side = 1, at = c(-100, 0, 100))
     axis(side = 2, at = c(-100, 0, 100))
 }
@@ -159,29 +158,55 @@ result.corner <- data.convex[[2]]
 result.ellipse <- data.convex[[3]]
 
 ## Compare Methods
-fdp.expr1 <- list(result.circ[[1]][c(1, 10, 11, 13)],
-                  result.corner[[1]][c(1, 10, 11, 13)],
-                  result.ellipse[[1]][c(1, 10, 11, 13)])
+## fdp.expr1 <- list(result.circ[[1]][c(1, 10, 11, 13)],
+##                   result.corner[[1]][c(1, 10, 11, 13)],
+##                   result.ellipse[[1]][c(1, 10, 11, 13)])
+## plot.FDR("../figs/rej_convex_methods_FDR.pdf",
+##          fdp.expr1, 
+##          mains = c("Circle in the middle",
+##              "Circle in the corner",
+##              "Thin ellipse"),
+##          methods = c("STAR-GAM", "STAR", "BH", "AdaPT"),
+##          cols = c("black", "red", "blue", "orange")
+##          )
+
+
+## power.expr1 <- list(result.circ[[2]][c(1, 10, 11, 13)],
+##                     result.corner[[2]][c(1, 10, 11, 13)],
+##                     result.ellipse[[2]][c(1, 10, 11, 13)])
+## plot.power("../figs/rej_convex_methods_power.pdf",
+##            power.expr1, 
+##            mains = c("Circle in the middle",
+##                "Circle in the corner",
+##                "Thin ellipse"),
+##            methods = c("STAR-GAM", "STAR", "BH", "AdaPT"),
+##            cols = c("black", "red", "blue", "orange")
+##            )
+
+## For Biometrika submission
+fdp.expr1 <- list(result.circ[[1]][c(1, 11, 13)],
+                  result.corner[[1]][c(1, 11, 13)],
+                  result.ellipse[[1]][c(1, 11, 13)])
 plot.FDR("../figs/rej_convex_methods_FDR.pdf",
          fdp.expr1, 
          mains = c("Circle in the middle",
              "Circle in the corner",
              "Thin ellipse"),
-         methods = c("STAR-GAM", "STAR", "BH", "AdaPT"),
-         cols = c("black", "red", "blue", "orange")
+         methods = c("ours", "method 1", "method 2"),
+         cols = c("black", "red", "blue")
          )
 
 
-power.expr1 <- list(result.circ[[2]][c(1, 10, 11, 13)],
-                    result.corner[[2]][c(1, 10, 11, 13)],
-                    result.ellipse[[2]][c(1, 10, 11, 13)])
+power.expr1 <- list(result.circ[[2]][c(1, 11, 13)],
+                    result.corner[[2]][c(1, 11, 13)],
+                    result.ellipse[[2]][c(1, 11, 13)])
 plot.power("../figs/rej_convex_methods_power.pdf",
            power.expr1, 
            mains = c("Circle in the middle",
                "Circle in the corner",
                "Thin ellipse"),
-           methods = c("STAR-GAM", "STAR", "BH", "AdaPT"),
-           cols = c("black", "red", "blue", "orange")
+           methods = c("ours", "method 1", "method 2"),
+           cols = c("black", "red", "blue")
            )
 
 
@@ -256,32 +281,61 @@ for (rho in c(5, -5)){
     result.corner <- data.convex[[2]]
     result.ellipse <- data.convex[[3]]
 
-    ## Compare Methods
-    fdp.expr1 <- list(result.circ[[1]][c(1, 10, 11, 13)],
-                      result.corner[[1]][c(1, 10, 11, 13)],
-                      result.ellipse[[1]][c(1, 10, 11, 13)])
+    ## ## Compare Methods
+    ## fdp.expr1 <- list(result.circ[[1]][c(1, 10, 11, 13)],
+    ##                   result.corner[[1]][c(1, 10, 11, 13)],
+    ##                   result.ellipse[[1]][c(1, 10, 11, 13)])
+    ## plot.FDR(paste0("../figs/rej_convex_methods_FDR_",
+    ##                 rho, ".pdf"),
+    ##          fdp.expr1, 
+    ##          mains = c("Circle in the middle",
+    ##              "Circle in the corner",
+    ##              "Thin ellipse"),
+    ##          methods = c("STAR-GAM", "STAR", "BH", "AdaPT"),
+    ##          cols = c("black", "red", "blue", "orange")
+    ##          )
+
+
+    ## power.expr1 <- list(result.circ[[2]][c(1, 10, 11, 13)],
+    ##                     result.corner[[2]][c(1, 10, 11, 13)],
+    ##                     result.ellipse[[2]][c(1, 10, 11, 13)])
+    ## plot.power(paste0("../figs/rej_convex_methods_power_",
+    ##                   rho, ".pdf"),
+    ##            power.expr1, 
+    ##            mains = c("Circle in the middle",
+    ##                "Circle in the corner",
+    ##                "Thin ellipse"),
+    ##            methods = c("STAR-GAM", "STAR", "BH", "AdaPT"),
+    ##            cols = c("black", "red", "blue", "orange"),
+    ##            ylim = c(0, 1.1)
+    ##            )
+
+    ## For Biometrika submission    
+    fdp.expr1 <- list(result.circ[[1]][c(1, 11, 13)],
+                      result.corner[[1]][c(1, 11, 13)],
+                      result.ellipse[[1]][c(1, 11, 13)])
     plot.FDR(paste0("../figs/rej_convex_methods_FDR_",
                     rho, ".pdf"),
              fdp.expr1, 
              mains = c("Circle in the middle",
                  "Circle in the corner",
                  "Thin ellipse"),
-             methods = c("STAR-GAM", "STAR", "BH", "AdaPT"),
-             cols = c("black", "red", "blue", "orange")
+             methods = c("ours", "method 1", "method 2"),
+             cols = c("black", "red", "blue")
              )
 
 
-    power.expr1 <- list(result.circ[[2]][c(1, 10, 11, 13)],
-                        result.corner[[2]][c(1, 10, 11, 13)],
-                        result.ellipse[[2]][c(1, 10, 11, 13)])
+    power.expr1 <- list(result.circ[[2]][c(1, 11, 13)],
+                        result.corner[[2]][c(1, 11, 13)],
+                        result.ellipse[[2]][c(1, 11, 13)])
     plot.power(paste0("../figs/rej_convex_methods_power_",
                       rho, ".pdf"),
                power.expr1, 
                mains = c("Circle in the middle",
                    "Circle in the corner",
                    "Thin ellipse"),
-               methods = c("STAR-GAM", "STAR", "BH", "AdaPT"),
-               cols = c("black", "red", "blue", "orange"),
+               methods = c("ours", "method 1", "method 2"),
+               cols = c("black", "red", "blue"),
                ylim = c(0, 1.1)
                )
 }

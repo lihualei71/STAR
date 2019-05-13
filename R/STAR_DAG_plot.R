@@ -41,27 +41,50 @@ result.tri.reg <- data.DAG[[3]]
 
 
 ## Compare Methods
-fdp.expr1 <- list(result.shallow.reg[[1]][c(1, 10, 12, 13, 14)],
-                  result.deep.reg[[1]][c(1, 10, 12, 13, 14)],
-                  result.tri.reg[[1]][c(1, 10, 12, 13, 14)])
+## fdp.expr1 <- list(result.shallow.reg[[1]][c(1, 10, 12, 13, 14)],
+##                   result.deep.reg[[1]][c(1, 10, 12, 13, 14)],
+##                   result.tri.reg[[1]][c(1, 10, 12, 13, 14)])
+## plot.FDR("../figs/rej_DAG_methods_FDR.pdf",
+##          fdp.expr1, 
+##          mains = c("Shallow Regular DAG",
+##                   "Deep Regular DAG",
+##                   "Triangular DAG"),
+##          methods = c("STAR", "BH", "SCR-DAG", "BH-DAG", "DAGGER"),
+##          cols = c("black", "red", "blue", "orange", "magenta"))
+
+## power.expr1 <- list(result.shallow.reg[[2]][c(1, 10, 12, 13, 14)],
+##                     result.deep.reg[[2]][c(1, 10, 12, 13, 14)],
+##                     result.tri.reg[[2]][c(1, 10, 12, 13, 14)])
+## plot.power("../figs/rej_DAG_methods_power.pdf",
+##          power.expr1, 
+##          mains = c("Shallow Regular DAG",
+##                   "Deep Regular DAG",
+##                   "Triangular DAG"),
+##          methods = c("STAR", "BH", "SCR-DAG", "BH-DAG", "DAGGER"),
+##          cols = c("black", "red", "blue", "orange", "magenta"))
+
+## For Biometrika submission
+fdp.expr1 <- list(result.shallow.reg[[1]][c(1, 10, 12, 14)],
+                  result.deep.reg[[1]][c(1, 10, 12, 14)],
+                  result.tri.reg[[1]][c(1, 10, 12, 14)])
 plot.FDR("../figs/rej_DAG_methods_FDR.pdf",
          fdp.expr1, 
          mains = c("Shallow Regular DAG",
                   "Deep Regular DAG",
                   "Triangular DAG"),
-         methods = c("STAR", "BH", "SCR-DAG", "BH-DAG", "DAGGER"),
-         cols = c("black", "red", "blue", "orange", "magenta"))
+         methods = c("ours", "method 1", "method 2", "method 3"),
+         cols = c("black", "red", "blue", "orange"))
 
-power.expr1 <- list(result.shallow.reg[[2]][c(1, 10, 12, 13, 14)],
-                    result.deep.reg[[2]][c(1, 10, 12, 13, 14)],
-                    result.tri.reg[[2]][c(1, 10, 12, 13, 14)])
+power.expr1 <- list(result.shallow.reg[[2]][c(1, 10, 12, 14)],
+                    result.deep.reg[[2]][c(1, 10, 12, 14)],
+                    result.tri.reg[[2]][c(1, 10, 12, 14)])
 plot.power("../figs/rej_DAG_methods_power.pdf",
          power.expr1, 
          mains = c("Shallow Regular DAG",
                   "Deep Regular DAG",
                   "Triangular DAG"),
-         methods = c("STAR", "BH", "SCR-DAG", "BH-DAG", "DAGGER"),
-         cols = c("black", "red", "blue", "orange", "magenta"))
+         methods = c("ours", "method 1", "method 2", "method 3"),
+         cols = c("black", "red", "blue", "orange"))
 
 ## Compare parameters of ISS
 fdp.expr2 <- list(result.shallow.reg[[1]][c(1:5)],
@@ -131,25 +154,49 @@ for (rho in c(5, -5)){
 
 
     ## Compare Methods
-    fdp.expr1 <- list(result.shallow.reg[[1]][c(1, 10, 12, 13, 14)],
-                      result.deep.reg[[1]][c(1, 10, 12, 13, 14)],
-                      result.tri.reg[[1]][c(1, 10, 12, 13, 14)])
+    ## fdp.expr1 <- list(result.shallow.reg[[1]][c(1, 10, 12, 13, 14)],
+    ##                   result.deep.reg[[1]][c(1, 10, 12, 13, 14)],
+    ##                   result.tri.reg[[1]][c(1, 10, 12, 13, 14)])
+    ## plot.FDR(paste0("../figs/rej_DAG_methods_FDR_", rho, ".pdf"),
+    ##          fdp.expr1, 
+    ##          mains = c("Shallow Regular DAG",
+    ##              "Deep Regular DAG",
+    ##              "Triangular DAG"),
+    ##          methods = c("STAR", "BH", "SCR-DAG", "BH-DAG", "DAGGER"),
+    ##          cols = c("black", "red", "blue", "orange", "magenta"))
+
+    ## power.expr1 <- list(result.shallow.reg[[2]][c(1, 10, 12, 13, 14)],
+    ##                     result.deep.reg[[2]][c(1, 10, 12, 13, 14)],
+    ##                     result.tri.reg[[2]][c(1, 10, 12, 13, 14)])
+    ## plot.power(paste0("../figs/rej_DAG_methods_power_", rho, ".pdf"),
+    ##            power.expr1, 
+    ##            mains = c("Shallow Regular DAG",
+    ##                "Deep Regular DAG",
+    ##                "Triangular DAG"),
+    ##            methods = c("STAR", "BH", "SCR-DAG", "BH-DAG", "DAGGER"),
+    ##            cols = c("black", "red", "blue", "orange", "magenta"))
+
+    ## For Biometrika submission
+    fdp.expr1 <- list(result.shallow.reg[[1]][c(1, 10, 12, 14)],
+                      result.deep.reg[[1]][c(1, 10, 12, 14)],
+                      result.tri.reg[[1]][c(1, 10, 12, 14)])
     plot.FDR(paste0("../figs/rej_DAG_methods_FDR_", rho, ".pdf"),
              fdp.expr1, 
              mains = c("Shallow Regular DAG",
                  "Deep Regular DAG",
                  "Triangular DAG"),
-             methods = c("STAR", "BH", "SCR-DAG", "BH-DAG", "DAGGER"),
-             cols = c("black", "red", "blue", "orange", "magenta"))
+             methods = c("ours", "method 1", "method 2", "method 3"),
+             cols = c("black", "red", "blue", "orange"))
 
-    power.expr1 <- list(result.shallow.reg[[2]][c(1, 10, 12, 13, 14)],
-                        result.deep.reg[[2]][c(1, 10, 12, 13, 14)],
-                        result.tri.reg[[2]][c(1, 10, 12, 13, 14)])
+    power.expr1 <- list(result.shallow.reg[[2]][c(1, 10, 12, 14)],
+                        result.deep.reg[[2]][c(1, 10, 12, 14)],
+                        result.tri.reg[[2]][c(1, 10, 12, 14)])
     plot.power(paste0("../figs/rej_DAG_methods_power_", rho, ".pdf"),
                power.expr1, 
                mains = c("Shallow Regular DAG",
                    "Deep Regular DAG",
                    "Triangular DAG"),
-               methods = c("STAR", "BH", "SCR-DAG", "BH-DAG", "DAGGER"),
-               cols = c("black", "red", "blue", "orange", "magenta"))
+               methods = c("ours", "method 1", "method 2", "method 3"),
+               cols = c("black", "red", "blue", "orange"))
+
 }
